@@ -1,0 +1,45 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 25, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "debug",
+      "displayName": "Debug viewer",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "MR_BUILD_VIEWER": "ON",
+        "MR_BUILD_OFFLINE": "ON",
+        "BUILD_TESTING": "OFF"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "debug",
+      "binaryDir": "${sourceDir}/build-release",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "offline",
+      "inherits": "debug",
+      "binaryDir": "${sourceDir}/build-offline",
+      "cacheVariables": { "MR_BUILD_VIEWER": "OFF" }
+    },
+    {
+      "name": "test",
+      "inherits": "debug",
+      "binaryDir": "${sourceDir}/build-test",
+      "cacheVariables": { "BUILD_TESTING": "ON" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "debug", "configurePreset": "debug" },
+    { "name": "release", "configurePreset": "release" },
+    { "name": "offline", "configurePreset": "offline" },
+    { "name": "test", "configurePreset": "test" }
+  ],
+  "testPresets": [
+    { "name": "test", "configurePreset": "test", "output": { "outputOnFailure": true } }
+  ]
+}
