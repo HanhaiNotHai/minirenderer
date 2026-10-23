@@ -50,6 +50,7 @@ cmake_install.cmake
 Makefile
 install_manifest.txt
 compile_commands.json
+CMakeUserPresets.json
 
 # Temporary files
 *.tmp
@@ -66,3 +67,13 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Default offline renderer output
+/framebuffer.ppm
+
+# Local AWS configuration and credentials
+/.aws/
